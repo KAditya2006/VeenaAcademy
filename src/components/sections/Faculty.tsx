@@ -1,0 +1,12 @@
+﻿import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import { Container } from "../common/Container";
+import { SectionHeader } from "../common/SectionHeader";
+import { getPublicFaculty, staticData, staticFallbackEnabled } from "../../lib/publicApi";
+import { fadeUp, staggerContainer, viewportOnce } from "../../lib/animations";
+
+export function Faculty() {
+  const { data, isLoading, isError, refetch } = useQuery({ queryKey: ["public-faculty"], queryFn: ({ signal }) => getPublicFaculty(signal) });
+  const source = data ?? (staticFallbackEnabled ? staticData.faculty : []);
+  return <section id="faculty" className="bg-surface section-pad"><Container><SectionHeader badge="Faculty" title="Mentors who teach with clarity and care" description="Experienced subject experts guide students through concepts, practice, exams and decisions with a balanced academic approach." />{isLoading && <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{Array.from({ length: 4 }).map((_, index) => <div key={index} className="h-80 animate-pulse rounded-token2xl bg-card" />)}</div>}{isError && !staticFallbackEnabled && <div className="premium-card mt-10 p-8 text-center"><p className="font-bold text-error">Faculty profiles are temporarily unavailable.</p><button type="button" onClick={() => void refetch()} className="button-secondary mt-4">Retry</button></div>}<motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={viewportOnce} className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{source.map((teacher) => <motion.article key={teacher.id} variants={fadeUp} className="premium-card overflow-hidden p-4"><div className="grid aspect-square place-items-center overflow-hidden rounded-tokenXl bg-gradient-to-br from-background to-primary-light">{teacher.photoUrl ? <img src={teacher.photoUrl} alt={teacher.name} className="h-full w-full object-cover" loading="lazy" /> : <div className="grid h-28 w-28 place-items-center rounded-tokenPill bg-primary text-3xl font-black text-text-inverse shadow-level3">{teacher.initials}</div>}</div><div className="p-4"><h3 className="text-xl font-black text-text-primary">{teacher.name}</h3><p className="mt-1 font-bold text-accent">{teacher.subject}</p><p className="mt-4 text-sm font-semibold text-text-secondary">{teacher.experience} experience</p><p className="mt-2 text-sm text-text-muted">{teacher.qualification}</p></div></motion.article>)}</motion.div></Container></section>;
+}

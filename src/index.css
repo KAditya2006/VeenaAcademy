@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply m-0 bg-background font-sans text-text-primary antialiased;
+  }
+
+  section {
+    scroll-margin-top: 96px;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+  }
+
+  h1,
+  h2 {
+    letter-spacing: 0;
+  }
+}
+
+@layer components {
+  .container-premium {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8;
+  }
+
+  .section-pad {
+    @apply py-20 sm:py-28;
+  }
+
+  .button-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-tokenPill bg-accent px-6 py-3 text-sm font-bold text-text-inverse shadow-glow transition duration-normal hover:-translate-y-0.5 hover:bg-accent-hover hover:shadow-level2;
+  }
+
+  .button-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-tokenPill border border-border bg-card px-6 py-3 text-sm font-bold text-primary shadow-level1 transition duration-normal hover:-translate-y-0.5 hover:border-accent/40 hover:bg-accent-light;
+  }
+
+  .button-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-tokenPill border border-glass-border bg-card px-6 py-3 text-sm font-bold text-primary transition duration-normal hover:-translate-y-0.5 hover:bg-accent-light;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-tokenPill border border-border bg-card px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-primary shadow-level1;
+  }
+
+  .eyebrow-dark {
+    @apply inline-flex items-center gap-2 rounded-tokenPill border border-glass-border bg-card/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-accent-light backdrop-blur;
+  }
+
+  .premium-card {
+    @apply rounded-token2xl border border-border bg-card/90 shadow-level2 backdrop-blur transition duration-normal;
+  }
+
+  .glass-panel {
+    @apply rounded-token2xl border border-glass-border bg-glass shadow-level3 backdrop-blur-xl;
+  }
+
+  .form-field {
+    @apply rounded-tokenXl border border-border bg-card px-4 py-3 text-text-primary outline-none transition duration-normal placeholder:text-text-muted hover:border-primary/25 focus:border-accent disabled:cursor-not-allowed disabled:bg-surface disabled:text-text-muted;
+  }
+
+  .icon-tile {
+    @apply grid place-items-center rounded-tokenXl bg-primary-light text-primary transition duration-normal;
+  }
+}
+
+

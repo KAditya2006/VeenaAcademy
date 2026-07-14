@@ -1,0 +1,17 @@
+﻿process.env.NODE_ENV = "test";
+process.env.PORT = "5001";
+process.env.MONGO_URI = "mongodb://127.0.0.1:27017/veena-academy-test";
+process.env.CORS_ORIGINS = "http://localhost:5173,http://127.0.0.1:5173";
+process.env.JWT_ACCESS_SECRET = "test_access_secret_that_is_long_enough";
+process.env.JWT_REFRESH_SECRET = "test_refresh_secret_that_is_long_enough";
+process.env.JWT_ACCESS_EXPIRES_IN = "15m";
+process.env.JWT_REFRESH_EXPIRES_IN = "7d";
+process.env.REFRESH_COOKIE_NAME = "veena_refresh_token";
+process.env.ADMIN_NAME = "Veena Academy Admin";
+process.env.ADMIN_EMAIL = "admin@veenaacademy.com";
+process.env.ADMIN_PASSWORD = "ChangeThisPassword123!";
+process.env.CLOUDINARY_CLOUD_NAME = 'demo';
+process.env.CLOUDINARY_API_KEY = 'key';
+process.env.CLOUDINARY_API_SECRET = 'secret';
+process.env.CLOUDINARY_FOLDER_ROOT = 'veena-academy';
+process.env.MAX_IMAGE_SIZE_MB = '5';

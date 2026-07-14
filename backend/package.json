@@ -1,0 +1,44 @@
+{
+    "name":  "veena-academy-backend",
+    "private":  true,
+    "version":  "1.0.0",
+    "type":  "module",
+    "scripts":  {
+                    "dev":  "tsx watch src/server.ts",
+                    "build":  "tsc",
+                    "start":  "node dist/server.js",
+                    "type-check":  "tsc --noEmit",
+                    "seed:admin":  "tsx src/scripts/seedSuperAdmin.ts",
+                    "test":  "vitest run --config vitest.config.ts",
+                    "seed:cms":  "tsx src/scripts/seedCms.ts"
+                },
+    "dependencies":  {
+                         "bcryptjs":  "^3.0.3",
+                         "cloudinary":  "^2.10.0",
+                         "cookie-parser":  "^1.4.7",
+                         "cors":  "^2.8.6",
+                         "dotenv":  "^17.4.2",
+                         "express":  "^5.2.1",
+                         "express-rate-limit":  "^8.5.2",
+                         "helmet":  "^8.2.0",
+                         "jsonwebtoken":  "^9.0.3",
+                         "mongoose":  "^9.7.4",
+                         "morgan":  "^1.11.0",
+                         "multer":  "^2.2.0",
+                         "zod":  "^4.4.3"
+                     },
+    "devDependencies":  {
+                            "@types/cookie-parser":  "^1.4.10",
+                            "@types/cors":  "^2.8.19",
+                            "@types/express":  "^5.0.6",
+                            "@types/jsonwebtoken":  "^9.0.10",
+                            "@types/morgan":  "^1.9.10",
+                            "@types/node":  "^24.10.2",
+                            "@types/supertest":  "^6.0.3",
+                            "mongodb-memory-server":  "^10.4.1",
+                            "supertest":  "^7.1.4",
+                            "tsx":  "^4.20.6",
+                            "typescript":  "^5.9.3",
+                            "vitest":  "^4.0.16"
+                        }
+}

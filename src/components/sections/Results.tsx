@@ -1,0 +1,15 @@
+﻿import { Trophy } from "lucide-react";
+import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import { Container } from "../common/Container";
+import { SectionHeader } from "../common/SectionHeader";
+import { AnimatedCounter } from "../common/AnimatedCounter";
+import { resultCounters } from "../../data/results";
+import { getPublicResults, staticData, staticFallbackEnabled } from "../../lib/publicApi";
+import { fadeUp, staggerContainer, viewportOnce } from "../../lib/animations";
+
+export function Results() {
+  const { data, isLoading, isError, refetch } = useQuery({ queryKey: ["public-results"], queryFn: ({ signal }) => getPublicResults(signal) });
+  const source = data ?? (staticFallbackEnabled ? staticData.results : []);
+  return <section id="results" className="bg-card section-pad"><Container><SectionHeader badge="Results" title="Performance that builds parent confidence" description="A result-oriented academic environment with measured progress, test analytics and regular mentoring for each student." /><div className="mt-14 grid gap-5 md:grid-cols-3">{resultCounters.map((counter) => <div key={counter.id} className="premium-card p-7 text-center"><p className="font-display text-5xl font-normal text-primary sm:text-6xl"><AnimatedCounter value={counter.value} suffix={counter.suffix} /></p><p className="mt-3 font-bold text-text-secondary">{counter.label}</p><p className="mt-2 text-sm text-text-muted">{counter.description}</p></div>)}</div>{isLoading && <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{Array.from({ length: 4 }).map((_, index) => <div key={index} className="h-80 animate-pulse rounded-token2xl bg-surface" />)}</div>}{isError && !staticFallbackEnabled && <div className="premium-card mt-10 p-8 text-center"><p className="font-bold text-error">Results are temporarily unavailable.</p><button type="button" onClick={() => void refetch()} className="button-secondary mt-4">Retry</button></div>}<motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={viewportOnce} className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{source.map((student) => <motion.article key={student.id} variants={fadeUp} className="premium-card overflow-hidden"><div className="grid aspect-[4/3] place-items-center overflow-hidden bg-gradient-to-br from-primary to-primary-hover text-text-inverse">{student.photoUrl ? <img src={student.photoUrl} alt={student.name} className="h-full w-full object-cover" loading="lazy" /> : <div className="grid h-24 w-24 place-items-center rounded-tokenPill bg-card/15 text-3xl font-black backdrop-blur">{student.initials}</div>}</div><div className="p-6"><div className="flex items-center gap-2 text-accent"><Trophy size={18} /><span className="text-sm font-black">{student.achievement}</span></div><h3 className="mt-3 text-xl font-black text-text-primary">{student.name}</h3><p className="mt-2 text-2xl font-black text-primary">{student.score}</p><p className="mt-2 text-sm font-semibold text-text-muted">{student.detail}</p></div></motion.article>)}</motion.div></Container></section>;
+}

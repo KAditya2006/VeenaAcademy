@@ -1,0 +1,61 @@
+import { z } from "zod";
+export declare const createCourseSchema: z.ZodObject<{
+    body: z.ZodObject<{
+        title: z.ZodString;
+        slug: z.ZodOptional<z.ZodString>;
+        category: z.ZodString;
+        shortDescription: z.ZodString;
+        longDescription: z.ZodOptional<z.ZodString>;
+        duration: z.ZodOptional<z.ZodString>;
+        eligibility: z.ZodOptional<z.ZodString>;
+        subjects: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodString>>>;
+        features: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodString>>>;
+        outcomes: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodString>>>;
+        batchTimings: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodString>>>;
+        image: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            publicId: z.ZodString;
+            secureUrl: z.ZodString;
+            width: z.ZodOptional<z.ZodNumber>;
+            height: z.ZodOptional<z.ZodNumber>;
+            format: z.ZodOptional<z.ZodString>;
+            bytes: z.ZodOptional<z.ZodNumber>;
+            altText: z.ZodOptional<z.ZodString>;
+        }, z.core.$strip>>>;
+        icon: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        sortOrder: z.ZodOptional<z.ZodNumber>;
+        isFeatured: z.ZodOptional<z.ZodBoolean>;
+        isPublished: z.ZodOptional<z.ZodBoolean>;
+        seoTitle: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        seoDescription: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strict>;
+}, z.core.$strip>;
+export declare const updateCourseSchema: z.ZodObject<{
+    body: z.ZodObject<{
+        title: z.ZodOptional<z.ZodString>;
+        slug: z.ZodOptional<z.ZodOptional<z.ZodString>>;
+        category: z.ZodOptional<z.ZodString>;
+        shortDescription: z.ZodOptional<z.ZodString>;
+        longDescription: z.ZodOptional<z.ZodOptional<z.ZodString>>;
+        duration: z.ZodOptional<z.ZodOptional<z.ZodString>>;
+        eligibility: z.ZodOptional<z.ZodOptional<z.ZodString>>;
+        subjects: z.ZodOptional<z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodString>>>>;
+        features: z.ZodOptional<z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodString>>>>;
+        outcomes: z.ZodOptional<z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodString>>>>;
+        batchTimings: z.ZodOptional<z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodString>>>>;
+        image: z.ZodOptional<z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            publicId: z.ZodString;
+            secureUrl: z.ZodString;
+            width: z.ZodOptional<z.ZodNumber>;
+            height: z.ZodOptional<z.ZodNumber>;
+            format: z.ZodOptional<z.ZodString>;
+            bytes: z.ZodOptional<z.ZodNumber>;
+            altText: z.ZodOptional<z.ZodString>;
+        }, z.core.$strip>>>>;
+        icon: z.ZodOptional<z.ZodOptional<z.ZodNullable<z.ZodString>>>;
+        sortOrder: z.ZodOptional<z.ZodOptional<z.ZodNumber>>;
+        isFeatured: z.ZodOptional<z.ZodOptional<z.ZodBoolean>>;
+        isPublished: z.ZodOptional<z.ZodOptional<z.ZodBoolean>>;
+        seoTitle: z.ZodOptional<z.ZodOptional<z.ZodNullable<z.ZodString>>>;
+        seoDescription: z.ZodOptional<z.ZodOptional<z.ZodNullable<z.ZodString>>>;
+    }, z.core.$strict>;
+}, z.core.$strip>;
